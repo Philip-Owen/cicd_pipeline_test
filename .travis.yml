@@ -1,13 +1,15 @@
 sudo: required
-
 services:
-  - docker
-
+- docker
 language: python
-
-script: 
-  - python -m pytest -v
-
+script:
+- python -m pytest -v
 after_success:
-  - sh .travis/deploy_dockerhub.sh
-  - test "$TRAVIS_BRANCH" = "master" && sh .travis/deploy_heroku.sh
+- sh .travis/deploy_dockerhub.sh
+deploy:
+  provider: heroku
+  api_key:
+    secure: k/Ckye4GQLawk0ukDwGYMbr87a1NC8qoKVFBd1bUGkwylJyjxzd4zfw9DSm1DIdVhrHmwlS7K2D+zLttq4e7J/8m/HMsrm5RD+4vpO1t4tfc2/8YXRVravjrv7zZMDUGK0qdngeeC4SFpSD+6ctnS6iJ608EMvfX5Hpfhoxv4jC6XUBuYrJ9KJ1RCDmnZYYvsfO9DXbhvJi9qh9Wji8MQ2YHZmvhbuzUqX+P54/VIt2aQQJ/sUnpc9cbP9SSjebxjapABbTBeCU2JA6ABcCXGZmPuXN9xqsyOvWGFN5lK7AW0TfSdAeEAVoTpejOu3WQW48oE9DxWMNHAMD9K59PQiqRK27mDpBioxHZXXh/znMJk1SLHU8A+JbpdIyePdigphaJjnk6T4yX5vOweIHat5KL1sjJk7cqR+ytHvDbsk9R9CIAKooz/9abXAEr+pxcHY/yNoV5xUS3BXlAwVb5lIyljbtHgCczk3Gd5m23/ogzgAgh//3QoyuE8RHAGQ2uhvI4jTAd+GyhhdWUmBX3CQjOF7/6vHua8NiU5So0krRNBWyRT7YHnlCbljLa/M82fEwXt43gfmb1Ot20Wx5hi51r+4rRLQ0L7vChYl4jSt/SyzgA1AFnrjCuBDQST7TQuF+sAZUHhUqDxp+xzFaS4hvrgS6MZyYB2vJIhUxkaM8=
+  app: frozen-ridge-13891
+  on:
+    repo: Philip-Owen/cicd_pipeline_test
