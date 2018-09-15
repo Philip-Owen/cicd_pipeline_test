@@ -5,7 +5,5 @@ if [ "$TRAVIS_BRANCH" = "master" ]; then
 else
     TAG="$TRAVIS_BRANCH"
 fi
-docker build -f Dockerfile -t $TRAVIS_REPO_SLUG:$TAG .
-docker push $TRAVIS_REPO_SLUG
-echo $TRAVIS_REPO_SLUG
-echo $DOCKER_USER
+docker build -f Dockerfile -t $DOCKER_USER/cicd_pipeline_test:$TAG .
+docker push $DOCKER_USER/cicd_pipeline_test
